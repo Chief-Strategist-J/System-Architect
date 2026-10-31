@@ -10,3 +10,6 @@
 [submodule "knowledge-graph-platform"]
 	path = knowledge-graph-platform
 	url = https://github.com/Chief-Strategist-J/knowledge-graph-platform.git
+[submodule "llm-obs-policies"]
+	path = llm-obs-policies
+	url = https://github.com/Scaibu/llm-obs-policies.git
