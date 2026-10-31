@@ -1,0 +1,12 @@
+[submodule "distributed-transaction-engine"]
+	path = distributed-transaction-engine
+	url = https://github.com/Chief-Strategist-J/distributed-transaction-engine.git
+[submodule "event-driven-platform"]
+	path = event-driven-platform
+	url = https://github.com/Chief-Strategist-J/event-driven-platform.git
+[submodule "internal-developer-platform"]
+	path = internal-developer-platform
+	url = https://github.com/Chief-Strategist-J/internal-developer-platform.git
+[submodule "knowledge-graph-platform"]
+	path = knowledge-graph-platform
+	url = https://github.com/Chief-Strategist-J/knowledge-graph-platform.git
