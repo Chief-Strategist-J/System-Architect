@@ -1,0 +1,4 @@
+feature: greeks_calculation_engine
+domain: derivatives_pricing
+language: cpp
+mode: stateless_hexagonal

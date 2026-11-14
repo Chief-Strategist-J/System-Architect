@@ -1,0 +1,4 @@
+feature: model_registry_monitoring
+domain: ml_ai_quant
+language: python
+mode: stateless_hexagonal

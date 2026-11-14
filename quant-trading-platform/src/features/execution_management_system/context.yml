@@ -1,0 +1,4 @@
+feature: execution_management_system
+domain: trading_execution
+language: cpp
+mode: stateless_hexagonal

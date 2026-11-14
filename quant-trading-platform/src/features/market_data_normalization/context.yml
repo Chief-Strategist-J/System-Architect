@@ -1,0 +1,4 @@
+feature: market_data_normalization
+domain: market_data_engineering
+language: rust
+mode: stateless_hexagonal

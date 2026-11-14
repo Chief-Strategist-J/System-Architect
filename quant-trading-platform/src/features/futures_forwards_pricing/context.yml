@@ -1,0 +1,4 @@
+feature: futures_forwards_pricing
+domain: derivatives_pricing
+language: cpp
+mode: stateless_hexagonal

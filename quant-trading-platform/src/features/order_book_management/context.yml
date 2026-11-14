@@ -1,0 +1,4 @@
+feature: order_book_management
+domain: trading_execution
+language: cpp
+mode: stateless_hexagonal

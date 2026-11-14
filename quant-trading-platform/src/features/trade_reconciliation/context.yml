@@ -1,0 +1,4 @@
+feature: trade_reconciliation
+domain: trading_execution
+language: cpp
+mode: stateless_hexagonal
