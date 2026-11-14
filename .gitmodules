@@ -13,3 +13,6 @@
 [submodule "llm-obs-policies"]
 	path = llm-obs-policies
 	url = https://github.com/Scaibu/llm-obs-policies.git
+[submodule "quant-trading-platform"]
+	path = quant-trading-platform
+	url = https://github.com/Chief-Strategist-J/quant-trading-platform.git
