@@ -1,0 +1,4 @@
+feature: production_reconciliation_reporting
+domain: production_controls
+language: go
+mode: stateless_hexagonal

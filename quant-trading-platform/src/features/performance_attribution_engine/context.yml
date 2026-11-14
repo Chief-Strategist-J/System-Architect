@@ -1,0 +1,4 @@
+feature: performance_attribution_engine
+domain: portfolio_management
+language: python
+mode: stateless_hexagonal

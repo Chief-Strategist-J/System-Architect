@@ -1,0 +1,4 @@
+feature: strategy_builder
+domain: strategy_development
+language: python
+mode: stateless_hexagonal

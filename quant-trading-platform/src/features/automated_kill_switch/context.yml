@@ -1,0 +1,4 @@
+feature: automated_kill_switch
+domain: production_controls
+language: go
+mode: stateless_hexagonal

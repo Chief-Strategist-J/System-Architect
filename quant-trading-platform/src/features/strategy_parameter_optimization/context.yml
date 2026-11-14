@@ -1,0 +1,4 @@
+feature: strategy_parameter_optimization
+domain: strategy_development
+language: python
+mode: stateless_hexagonal

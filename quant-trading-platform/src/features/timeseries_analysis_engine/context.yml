@@ -1,0 +1,4 @@
+feature: timeseries_analysis_engine
+domain: quantitative_research
+language: python
+mode: stateless_hexagonal
