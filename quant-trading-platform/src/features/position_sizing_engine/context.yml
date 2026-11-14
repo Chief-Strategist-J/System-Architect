@@ -1,4 +1,0 @@
-feature: position_sizing_engine
-domain: risk_management
-language: rust
-mode: stateless_hexagonal

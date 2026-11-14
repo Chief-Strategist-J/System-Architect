@@ -1,4 +1,0 @@
-feature: backtesting_analytics
-domain: backtesting_simulation
-language: cpp
-mode: stateless_hexagonal

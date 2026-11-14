@@ -1,4 +1,0 @@
-feature: multitimeframe_analysis
-domain: strategy_development
-language: python
-mode: stateless_hexagonal

@@ -1,4 +1,0 @@
-feature: order_execution_simulator
-domain: backtesting_simulation
-language: cpp
-mode: stateless_hexagonal

@@ -1,5 +1,0 @@
-# Kubernetes Service routing
-apiVersion: v1
-kind: Service
-metadata:
-  name: quant-trading-platform

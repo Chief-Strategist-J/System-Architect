@@ -1,4 +1,0 @@
-feature: portfolio_construction_engine
-domain: portfolio_management
-language: python
-mode: stateless_hexagonal

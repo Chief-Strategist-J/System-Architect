@@ -1,4 +1,0 @@
-feature: reinforcement_learning_trading
-domain: ml_ai_quant
-language: python
-mode: stateless_hexagonal

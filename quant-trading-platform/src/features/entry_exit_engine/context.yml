@@ -1,4 +1,0 @@
-feature: entry_exit_engine
-domain: strategy_development
-language: python
-mode: stateless_hexagonal

@@ -1,4 +1,0 @@
-feature: volatility_modeling_engine
-domain: quantitative_research
-language: python
-mode: stateless_hexagonal

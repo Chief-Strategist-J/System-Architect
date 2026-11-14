@@ -1,4 +1,0 @@
-feature: historical_backtesting_engine
-domain: backtesting_simulation
-language: cpp
-mode: stateless_hexagonal

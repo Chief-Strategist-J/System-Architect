@@ -1,4 +1,0 @@
-feature: strategy_version_management
-domain: strategy_development
-language: python
-mode: stateless_hexagonal

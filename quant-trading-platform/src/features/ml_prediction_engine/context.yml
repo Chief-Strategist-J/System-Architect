@@ -1,4 +1,0 @@
-feature: ml_prediction_engine
-domain: ml_ai_quant
-language: python
-mode: stateless_hexagonal

@@ -1,6 +1,0 @@
-# Declarative topic provisioning manifests
-topics:
-  - name: quant-trading-platform.events
-    partitions: 3
-    replication_factor: 1
-    retention_ms: 604800000

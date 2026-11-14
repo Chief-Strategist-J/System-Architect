@@ -1,1 +1,0 @@
-# Pinned Terraform & provider versions

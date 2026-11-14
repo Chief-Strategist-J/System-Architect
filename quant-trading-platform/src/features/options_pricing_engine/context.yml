@@ -1,4 +1,0 @@
-feature: options_pricing_engine
-domain: derivatives_pricing
-language: cpp
-mode: stateless_hexagonal

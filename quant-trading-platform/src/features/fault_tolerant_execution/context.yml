@@ -1,4 +1,0 @@
-feature: fault_tolerant_execution
-domain: production_controls
-language: go
-mode: stateless_hexagonal

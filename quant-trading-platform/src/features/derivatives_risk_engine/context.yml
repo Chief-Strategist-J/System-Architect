@@ -1,4 +1,0 @@
-feature: derivatives_risk_engine
-domain: derivatives_pricing
-language: cpp
-mode: stateless_hexagonal

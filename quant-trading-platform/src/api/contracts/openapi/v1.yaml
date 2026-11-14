@@ -1,6 +1,0 @@
-# OpenAPI 3.1 REST Specification
-openapi: 3.1.0
-info:
-  title: quant-trading-platform API
-  version: 1.0.0
-paths: {}

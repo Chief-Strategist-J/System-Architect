@@ -1,4 +1,0 @@
-feature: smart_order_routing
-domain: trading_execution
-language: cpp
-mode: stateless_hexagonal

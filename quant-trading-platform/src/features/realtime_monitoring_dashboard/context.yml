@@ -1,4 +1,0 @@
-feature: realtime_monitoring_dashboard
-domain: production_controls
-language: go
-mode: stateless_hexagonal

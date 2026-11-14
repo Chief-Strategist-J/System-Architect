@@ -1,4 +1,0 @@
-# GraphQL Schema Definition
-type Query {
-  health: String!
-}

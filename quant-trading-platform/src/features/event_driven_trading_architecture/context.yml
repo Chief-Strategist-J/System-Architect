@@ -1,4 +1,0 @@
-feature: event_driven_trading_architecture
-domain: production_controls
-language: go
-mode: stateless_hexagonal

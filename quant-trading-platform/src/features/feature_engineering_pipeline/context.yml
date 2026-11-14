@@ -1,4 +1,0 @@
-feature: feature_engineering_pipeline
-domain: ml_ai_quant
-language: python
-mode: stateless_hexagonal

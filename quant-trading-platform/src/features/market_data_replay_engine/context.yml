@@ -1,4 +1,0 @@
-feature: market_data_replay_engine
-domain: market_data_engineering
-language: rust
-mode: stateless_hexagonal

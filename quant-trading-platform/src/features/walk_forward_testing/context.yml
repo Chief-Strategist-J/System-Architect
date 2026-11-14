@@ -1,4 +1,0 @@
-feature: walk_forward_testing
-domain: backtesting_simulation
-language: cpp
-mode: stateless_hexagonal

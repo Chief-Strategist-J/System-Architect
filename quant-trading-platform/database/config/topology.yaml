@@ -1,3 +1,0 @@
-# Replication topology and read/write quorum configuration
-topology:
-  mode: primary_replica

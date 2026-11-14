@@ -1,4 +1,0 @@
-feature: execution_algorithms
-domain: trading_execution
-language: cpp
-mode: stateless_hexagonal

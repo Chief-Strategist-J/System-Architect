@@ -1,4 +1,0 @@
-feature: monte_carlo_simulation
-domain: backtesting_simulation
-language: cpp
-mode: stateless_hexagonal

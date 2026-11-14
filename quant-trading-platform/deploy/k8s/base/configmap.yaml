@@ -1,5 +1,0 @@
-# Injected environment configurations
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: quant-trading-platform-config

@@ -1,4 +1,0 @@
-feature: transaction_cost_simulator
-domain: backtesting_simulation
-language: cpp
-mode: stateless_hexagonal

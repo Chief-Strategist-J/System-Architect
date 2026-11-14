@@ -1,4 +1,0 @@
-feature: technical_indicator_library
-domain: strategy_development
-language: python
-mode: stateless_hexagonal

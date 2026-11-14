@@ -1,4 +1,0 @@
-feature: statistical_arbitrage_engine
-domain: quantitative_research
-language: python
-mode: stateless_hexagonal

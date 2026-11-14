@@ -1,4 +1,0 @@
-feature: historical_market_data_storage
-domain: market_data_engineering
-language: rust
-mode: stateless_hexagonal

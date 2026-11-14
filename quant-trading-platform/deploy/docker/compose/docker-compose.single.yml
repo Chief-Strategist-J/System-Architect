@@ -1,5 +1,0 @@
-# Standalone runner for this package
-version: '3.8'
-services:
-  app:
-    build: ../service

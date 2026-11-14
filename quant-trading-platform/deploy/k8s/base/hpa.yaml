@@ -1,5 +1,0 @@
-# Horizontal Pod Autoscaler
-apiVersion: autoscaling/v2
-kind: HorizontalPodAutoscaler
-metadata:
-  name: quant-trading-platform

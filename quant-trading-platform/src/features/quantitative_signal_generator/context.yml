@@ -1,4 +1,0 @@
-feature: quantitative_signal_generator
-domain: quantitative_research
-language: python
-mode: stateless_hexagonal
