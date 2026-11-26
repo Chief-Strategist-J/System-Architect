@@ -1,4 +1,4 @@
-# Agent Execution Guidelines & Institutional Mandates: System Architecture Platform
+# Agent Execution Guidelines & Institutional Mandates: Internal Developer Platform
 
 ## 1. Advisor Persona & Pre-execution Gate
 - Before touching ANY code, folder, or planning, you MUST act as an Advisor:
@@ -28,12 +28,9 @@ Before reading any rules or executing lifecycle commands, you MUST resolve `$POL
    POLICY_ROOT=$(find . .. ../.. ~/.local/share /home/btpl-lap-22/live/System-Architect -maxdepth 3 -type f -path "*/policy-orchestrator/src/api/cli/main.py" 2>/dev/null | head -n 1 | sed 's|/policy-orchestrator/src/api/cli/main.py||')
    ```
 
-3. **Auto-Clone Fallback**:
-   If the signature files are not found in any local or parent tree:
-   ```bash
-   git clone https://github.com/Scaibu/llm-obs-policies.git ~/.local/share/llm-obs-policies
-   POLICY_ROOT="$HOME/.local/share/llm-obs-policies"
-   ```
+3. **No-Clone Hard Stop (Strict User Permission Required)**:
+   - If the signature files are not found in any local or parent tree, you are STRICTLY FORBIDDEN from cloning any repository automatically.
+   - Halt execution immediately, report that `$POLICY_ROOT` was not found, and request explicit user permission before attempting `git clone`.
 
 4. **Execution Enforcement**:
    - All rule reads in Section 1.1 & Section 6 MUST resolve against:
@@ -48,6 +45,11 @@ Before reading any rules or executing lifecycle commands, you MUST resolve `$POL
     - `$POLICY_ROOT/rules/folder-structure/1-feature-folder-writing-rule.md`
     - `$POLICY_ROOT/rules/code-quality/coding-standards/03-strict-typecasting-rules.md`
     - `$POLICY_ROOT/rules/database/migrations/01-schema-migrations-and-code-guidelines.md`
+    - `$POLICY_ROOT/rules/database/design/05-db-writing-rules-phase-1 copy.md`
+    - `$POLICY_ROOT/rules/folder-structure/function-structures/design/database-patterns.md`
+    - `$POLICY_ROOT/rules/folder-structure/function-structures/design/design-patterns.md`
+    - `$POLICY_ROOT/rules/folder-structure/4-functions-and-classes-writing-rule.md`
+    - `$POLICY_ROOT/rules/code-quality/coding-standards/02-function-parameter-limit-rule.md`
   * Use-Case policies: Look up your active task in **Section 6 (Use-Case-Driven Rule Retrieval Matrix)** and strictly adhere to all mapped rule files.
 
 ### 1.1 Mandatory 'read rule' Trigger Protocol
@@ -74,20 +76,28 @@ Whenever the user states `"read rule"`, `"read rules"`, or explicitly demands po
 ---
 
 ## 2. Strict Negative Invariants (What You Must NEVER Do)
-1. **NEVER Hand-Craft Math, Parsing, or Algorithmic Logic (Native Library Mandate)**:
-   - Hand-rolling custom algorithms, mathematical solvers, indicators, or parsers is STRICTLY PROHIBITED.
-   - Always verify and link established, production-grade native libraries across C++, Rust, Python, and Go.
+1. **NEVER Hand-Craft Kubernetes Controllers, GitOps Engines, or Manifest Parsers**:
+   - Hand-rolling custom Kubernetes API clients, YAML deserializers, or Git reconciliation loops is STRICTLY PROHIBITED.
+   - Always import established production-grade libraries (see Section 4).
 2. **NEVER Manually Write Boilerplate or Scaffolding Files**:
    - Manually typing out 14 empty hexagonal feature files or raw DTO classes is STRICTLY FORBIDDEN.
    - Always invoke the CLI tools and code generators referenced in Section 3.
 3. **NEVER Write Mid-Function Comments**:
-   - Zero inline comments inside function or method bodies across any language.
+   - Zero inline comments inside function or method bodies across Go and TypeScript.
    - Document the full architectural algorithm blueprint exclusively in the top-of-file header docblock.
 4. **NEVER Use Untyped Data Containers**:
-   - Prohibit untyped `dict`, `Any`, `interface{}`, `void*`, or raw JSON strings.
-   - All inputs, outputs, and internal states must be strictly typecasted via Pydantic (Python), Serde (Rust), C++20 structs, or Go structs.
+   - Prohibit untyped `interface{}`, `any`, raw JSON strings, or unchecked maps.
+   - All CRDs, workload specifications, and cluster states must be strictly typecasted via Go structs.
 5. **NEVER Throw Unhandled Exceptions or Panic**:
-   - All operations across packages must return strongly-typed `Result<T, DomainError>` envelopes.
+   - Reconciliation loops must be idempotent, strictly stateless, and return strongly-typed `Result[T, error]`.
+6. **NEVER Write Mock or In-Memory Bypass Code in Production Paths**:
+   - In-memory bypass maps, mock stores, or fake drivers in production code are STRICTLY FORBIDDEN.
+   - All production adapters must wire and execute concrete production libraries (`k8s.io/client-go`, PostgreSQL drivers, etc.).
+7. **NEVER Test via Ad-Hoc Code Generation or Internal Function Calls**:
+   - Whenever asked to "test it", creating temporary `.go` files, throwaway test scripts in `/tmp`, or invoking Go package functions directly is STRICTLY FORBIDDEN.
+   - All integration and end-to-end verification MUST run through the official HTTP REST API via `curl` (e.g. `scripts/test/test.curl-api.sh`) or official CLI interfaces.
+8. **NEVER Clone External Repositories Without User Permission**:
+   - Automatic `git clone` calls are prohibited. Any cloning must be explicitly approved by the user.
 
 ---
 
@@ -100,48 +110,39 @@ Manage the entire lifecycle with the single unified command (resolving `$POLICY_
 # Phase 1: Start Task (Creates GitHub issue, cuts feat/ branch, and optionally scaffolds feature files)
 python3 $POLICY_ROOT/policy-orchestrator/src/api/cli/main.py task \
   --phase start \
-  --repo Chief-Strategist-J/<repo_name> \
+  --repo Chief-Strategist-J/internal-developer-platform \
   --title "<type>(<scope>): <summary>" \
   --slug <branch-slug> \
-  [--package <package_name> --feature <feature_name>]
+  [--package internal-developer-platform --feature <feature_name>]
 
 # Phase 2: Finish Task (Executes verification test gate, PR creation, merge, and parent pointer sync)
 python3 $POLICY_ROOT/policy-orchestrator/src/api/cli/main.py task \
   --phase finish \
-  --repo Chief-Strategist-J/<repo_name> \
-  [--test-cmd "<test-command>"]
+  --repo Chief-Strategist-J/internal-developer-platform \
+  --test-cmd "go test ./..."
 ```
 
-### 3.2 Automated Model & Schema Generation from YAML / Protobuf
+### 3.2 Automated Model & CRD Code Generation
 ```bash
-# Python Pydantic Models from OpenAPI YAML:
-datamodel-codegen --input contracts/openapi/v1.yaml --output contracts/openapi_models.py
-
-# Go Types and Clients from OpenAPI YAML:
+# Generate Go Types and Clients from OpenAPI YAML:
 oapi-codegen -generate types,client -package contracts contracts/openapi/v1.yaml > contracts/openapi_models.go
 
-# Compile Protobuf & gRPC Contracts:
-protoc -I=contracts/proto \
-  --cpp_out=src/infra/clients/proto \
-  --go_out=src/infra/clients/proto \
-  --python_out=src/infra/clients/proto \
-  contracts/proto/*.proto
-
-# Type-Safe SQL Query Generation:
-sqlc generate -f database/config/sqlc.yaml
+# Kubernetes Controller & CRD Generation:
+controller-gen object:headerFile="hack/boilerplate.go.txt" paths="./..."
 ```
 
 ---
 
-## 4. Mandatory Native Library Matrix by System Package
-| Platform Package | Primary Languages | Mandated Native Libraries (Do Not Re-invent) |
+## 4. Mandatory Native Library Matrix by Engineering Domain
+When implementing features, you MUST import and use these verified, production-grade native libraries:
+
+| Domain | Language | Mandated Native Libraries (Do Not Re-invent) |
 |---|---|---|
-| **quant-trading-platform** | C++, Rust, Python, Go | `QuantLib`, `Eigen`, `tokio`, `polars`, `numpy`, `scipy`, `ta-lib`, `cvxpy`, `statrs` |
-| **distributed-transaction-engine** | Go, Rust | `hashicorp/raft`, `cockroachdb/pebble`, `temporalio/sdk-go`, `crossbeam`, `tikv/raft-rs` |
-| **event-driven-platform** | Go | `IBM/sarama`, `ThreeDotsLabs/watermill`, `cloudevents/sdk-go/v2`, `hamba/avro` |
-| **internal-developer-platform** | Go | `k8s.io/client-go`, `sigs.k8s.io/controller-runtime`, `argoproj/argo-cd/v2`, `helm.sh/helm/v3` |
-| **knowledge-graph-platform** | Python, Go | `neo4j`, `networkx`, `qdrant-client`, `rdflib`, `sentence-transformers` |
-| **llm-obs-policies** | Python, Go | `tree-sitter`, `ast`, `pydantic`, `fastapi`, `pytest` |
+| **Kubernetes API & Control Plane** | **Go** (`.go`) | `k8s.io/client-go`, `sigs.k8s.io/controller-runtime`, `k8s.io/apimachinery` |
+| **GitOps & Reconciliation** | **Go** (`.go`) | `argoproj/argo-cd/v2`, `fluxcd/pkg/git`, `go-git/go-git/v5` |
+| **Helm & Manifest Engine** | **Go** (`.go`) | `helm.sh/helm/v3`, `sigs.k8s.io/kustomize/api` |
+| **Cloud Infrastructure Providers** | **Go** (`.go`) | `crossplane/crossplane-runtime`, `pulumi/sdk/v3` |
+| **Telemetry & Observability** | **Go** (`.go`) | `opentelemetry-go`, `prometheus/client_golang`, `uber-go/zap` |
 
 ---
 
@@ -151,10 +152,10 @@ Execute via the unified `task` command (resolving `$POLICY_ROOT` via Section 1.0
    ```bash
    python3 $POLICY_ROOT/policy-orchestrator/src/api/cli/main.py task \
      --phase start \
-     --repo Chief-Strategist-J/<repo_name> \
+     --repo Chief-Strategist-J/internal-developer-platform \
      --title "<type>(<scope>): <summary>" \
      --slug <slug> \
-     [--package <package_name> --feature <feature_name>]
+     [--package internal-developer-platform --feature <feature_name>]
    ```
 2. **Verify Native Library & Use-Case Rules**: Check Section 4 for native library mandates and Section 6 for domain-specific rules before writing any domain logic; reject any attempt to hand-roll existing algorithms.
 3. **Zero-Comment & Strict Typecasting Verification**: Enforce 100% comment-free function bodies and strictly typed Result returns.
@@ -162,8 +163,8 @@ Execute via the unified `task` command (resolving `$POLICY_ROOT` via Section 1.0
    ```bash
    python3 $POLICY_ROOT/policy-orchestrator/src/api/cli/main.py task \
      --phase finish \
-     --repo Chief-Strategist-J/<repo_name> \
-     --test-cmd "<test-command>"
+     --repo Chief-Strategist-J/internal-developer-platform \
+     --test-cmd "go test ./..."
    ```
 
 ---
